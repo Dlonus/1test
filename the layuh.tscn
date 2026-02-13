@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="CubeMesh" id=1]
+
+[node name="the layuh" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.191482, 0.0312581, -0.053216 )
+
+[node name="Floor" type="MeshInstance" parent="."]
+transform = Transform( 10, 0, 0, 0, 0.5, 0, 0, 0, 12, 0, 0, 0 )
+mesh = SubResource( 1 )
+
+[node name="Wall1" type="MeshInstance" parent="."]
+transform = Transform( -0.171445, 0.499706, 0, -4.99706, -0.0171445, 0, 0, 0, 12, 9.696, 5.225, 0 )
+mesh = SubResource( 1 )
+
+[node name="Wall2" type="MeshInstance" parent="."]
+transform = Transform( -0.171445, 0.499706, 0, -4.99706, -0.0171445, 0, 0, 0, 12, -9.33, 5.256, 0 )
+mesh = SubResource( 1 )
+
+[node name="Wall3" type="MeshInstance" parent="."]
+transform = Transform( 9.55343e-15, -2.18557e-08, 10, -5, -2.18557e-08, 0, 2.18557e-07, -0.5, -4.37114e-07, 0.0315197, 5.256, 11.4983 )
+mesh = SubResource( 1 )
+
+[node name="Wall4 33" type="MeshInstance" parent="."]
+transform = Transform( 9.55342e-15, -2.18557e-08, 3.3, -5, -2.18557e-08, -4.06236e-21, 2.18557e-07, -0.5, -1.44248e-07, -6.35403, 5.25, -11.5 )
+mesh = SubResource( 1 )
+
+[node name="Wall4 66" type="MeshInstance" parent="."]
+transform = Transform( 9.55342e-15, -2.18557e-08, 3.3, -5, -2.18557e-08, -4.06236e-21, 2.18557e-07, -0.5, -1.44248e-07, 6.69889, 5.25, -11.5 )
+mesh = SubResource( 1 )

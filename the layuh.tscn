@@ -1,13 +1,55 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Door.gd" type="Script" id=1]
+[ext_resource path="res://playuh.gd" type="Script" id=2]
+[ext_resource path="res://ButtonPanel.gd" type="Script" id=3]
 
 [sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="BoxShape" id=11]
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="CubeMesh" id=3]
+
+[sub_resource type="BoxShape" id=4]
+
+[sub_resource type="CubeMesh" id=5]
+
+[sub_resource type="CubeMesh" id=6]
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_color = Color( 0, 1, 0.4, 1 )
+metallic = 0.07
+metallic_specular = 0.41
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 4.17
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="BoxShape" id=7]
+
+[sub_resource type="BoxShape" id=12]
+
+[sub_resource type="CapsuleShape" id=9]
+
+[sub_resource type="CapsuleMesh" id=10]
 
 [node name="the layuh" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.191482, 0.0312581, -0.053216 )
 
-[node name="Floor" type="MeshInstance" parent="."]
+[node name="floor" type="StaticBody" parent="."]
+transform = Transform( 10, 0, 0, 0, 0.5, 0, 0, 0, 12, 0, 0, 0 )
+
+[node name="Floormesh" type="MeshInstance" parent="floor"]
 transform = Transform( 10, 0, 0, 0, 0.5, 0, 0, 0, 12, 0, 0, 0 )
 mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+
+[node name="FloorCollisionShape" type="CollisionShape" parent="floor"]
+transform = Transform( 10, 0, 0, 0, 0.5, 0, 0, 0, 12, 0, 0, 0 )
+shape = SubResource( 11 )
 
 [node name="Wall1" type="MeshInstance" parent="."]
 transform = Transform( -0.171445, 0.499706, 0, -4.99706, -0.0171445, 0, 0, 0, 12, 9.696, 5.225, 0 )
@@ -26,5 +68,85 @@ transform = Transform( 9.55342e-15, -2.18557e-08, 3.3, -5, -2.18557e-08, -4.0623
 mesh = SubResource( 1 )
 
 [node name="Wall4 66" type="MeshInstance" parent="."]
-transform = Transform( 9.55342e-15, -2.18557e-08, 3.3, -5, -2.18557e-08, -4.06236e-21, 2.18557e-07, -0.5, -1.44248e-07, 6.69889, 5.25, -11.5 )
+transform = Transform( 9.55342e-15, -2.18557e-08, 3.3, -5, -2.18557e-08, -4.06236e-21, 2.18557e-07, -0.5, -1.44248e-07, 6.69889, 5.25, -11.5114 )
 mesh = SubResource( 1 )
+
+[node name="Wall4 top" type="MeshInstance" parent="."]
+transform = Transform( 5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 9.249, -11.5 )
+mesh = SubResource( 2 )
+
+[node name="Door" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.204074, 8.25836, -11.9471 )
+script = ExtResource( 1 )
+
+[node name="DoorL" type="StaticBody" parent="Door"]
+
+[node name="MeshInstance" type="MeshInstance" parent="Door/DoorL"]
+transform = Transform( 1.68, 0, 0, 0, 4, 0, 0, 0, 0.5, -1.714, -3.782, 0.443116 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Door/DoorL"]
+transform = Transform( 1.68, 0, 0, 0, 4, 0, 0, 0, 0.5, -1.714, -3.782, 0.443 )
+shape = SubResource( 4 )
+
+[node name="DoorR" type="StaticBody" parent="Door"]
+
+[node name="MeshInstance" type="MeshInstance" parent="Door/DoorR"]
+transform = Transform( 1.68, 0, 0, 0, 4, 0, 0, 0, 0.5, 1.663, -3.782, 0.432044 )
+mesh = SubResource( 5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Door/DoorR"]
+transform = Transform( 1.68, 0, 0, 0, 4, 0, 0, 0, 0.5, 1.663, -3.782, 0.432 )
+shape = SubResource( 4 )
+
+[node name="Tween" type="Tween" parent="Door"]
+
+[node name="ButtonPanel" type="Spatial" parent="."]
+script = ExtResource( 3 )
+
+[node name="StaticBody" type="StaticBody" parent="ButtonPanel"]
+transform = Transform( 2.6, 0, 0, 0, 4, 0, 0, 0, 0.2, 5.47885, 3.5, -10.831 )
+
+[node name="MeshInstance" type="MeshInstance" parent="ButtonPanel/StaticBody"]
+transform = Transform( 0.192308, 0, 0, 0, 0.2, 0, 0, 0, 1, 0.00813365, 0, -0.845043 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="CollisionShape" type="CollisionShape" parent="ButtonPanel/StaticBody"]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 1, 0.00762606, 0, -0.845039 )
+shape = SubResource( 7 )
+__meta__ = {
+"_editor_description_": "s"
+}
+
+[node name="Area" type="Area" parent="ButtonPanel"]
+transform = Transform( 3, 0, 0, 0, 5, 0, 0, 0, 0.5, 5.48312, 3.5, -10.7689 )
+
+[node name="CollisionShape" type="CollisionShape" parent="ButtonPanel/Area"]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.00800037, 0, -0.196217 )
+shape = SubResource( 12 )
+
+[node name="playuh" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.76888, 7.03643 )
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="playuh"]
+transform = Transform( 0.5, 0, 0, 0, 3, 0, 0, 0, 0.2, 0, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="MeshInstance" type="MeshInstance" parent="playuh"]
+transform = Transform( 0.5, 0, 0, 0, 3, 0, 0, 0, 0.2, 0, 0, 0 )
+mesh = SubResource( 10 )
+
+[node name="head" type="Spatial" parent="playuh"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.893659, 0 )
+
+[node name="Camera" type="Camera" parent="playuh/head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.48007, -0.214981 )
+current = true
+fov = 90.0
+
+[connection signal="button_pressed" from="ButtonPanel" to="Door" method="_on_ButtonPanel_button_pressed"]
+[connection signal="body_entered" from="ButtonPanel/Area" to="ButtonPanel" method="_on_Area_body_entered"]
+[connection signal="body_exited" from="ButtonPanel/Area" to="ButtonPanel" method="_on_Area_body_exited"]
